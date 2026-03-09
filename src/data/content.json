@@ -1,0 +1,181 @@
+{
+  "navbar": {
+    "brand": {
+      "name": "Greenwood Academy",
+      "subtitle": "Est. 1999",
+      "logo": "/images/logo.png"
+    },
+    "links": [
+      { "name": "Home", "path": "/" },
+      { "name": "About", "path": "/about" },
+      { "name": "Academics", "path": "/academics" },
+      { "name": "Admissions", "path": "/admissions" },
+      { "name": "Contact", "path": "/contact" }
+    ],
+    "loginOptions": [
+      { "name": "Student Login", "path": "/login/student", "icon": "graduation-cap" },
+      { "name": "Admin Login", "path": "/login/admin", "icon": "shield-alt" },
+      { "name": "Faculty Login", "path": "/login/faculty", "icon": "chalkboard-teacher" }
+    ]
+  },
+  "hero": {
+    "badge": "Ranked #1 School in Region 2025",
+    "title": "Inspiring Excellence, Building Future Leaders",
+    "subtitle": "Where knowledge meets character. Shaping bright minds since 1999.",
+    "backgroundImage": "/images/home.png",
+    "ctaButtons": [
+      { "text": "Enquiry", "path": "/contact", "primary": true },
+      { "text": "Virtual Tour", "path": "/virtual-tour", "primary": false }
+    ],
+    "trustBadges": [
+      "CBSE Affiliated",
+      "ISO Certified", 
+      "Smart Classes"
+    ],
+    "contact": {
+      "address": "576 Education Lane, Los Angeles",
+      "phone": "+1 234 567 8900",
+      "email": "info@greenwoodacademy.edu"
+    }
+  },
+  "stats": [
+    { "number": "5000", "label": "Students Enrolled", "icon": "user-graduate" },
+    { "number": "200", "label": "Expert Teachers", "icon": "chalkboard-teacher" },
+    { "number": "100", "label": "Board Results", "icon": "chart-line" },
+    { "number": "25", "label": "Years of Legacy", "icon": "trophy" }
+  ],
+  "about": {
+    "title": "Nurturing Young Minds for a Brighter Future",
+    "subtitle": "ABOUT OUR SCHOOL",
+    "description": "Greenwood Academy has been a beacon of educational excellence for over two decades. Our commitment to holistic development, innovative teaching methods, and state-of-the-art infrastructure ensures that every student reaches their full potential.",
+    "image": "/images/img1.png",
+    "badge": "Since 1999 | 25 Years",
+    "features": [
+      "Experienced & Dedicated Faculty",
+      "State-of-the-Art Infrastructure",
+      "Holistic Curriculum & Sports",
+      "Safe & Nurturing Environment"
+    ],
+    "mission": "To inspire and empower students to become compassionate, curious, and capable global citizens.",
+    "facilities": [
+      "Smart classrooms",
+      "Science and computer labs", 
+      "Sports and arts facilities",
+      "Library with digital resources"
+    ]
+  },
+  "academics": {
+    "title": "Our Academic Programs",
+    "programs": [
+      {
+        "title": "Primary School",
+        "grades": "Grades 1–5",
+        "description": "Foundation years focused on creative learning, basic skills, and character development.",
+        "icon": "palette",
+        "path": "/academics/primary"
+      },
+      {
+        "title": "Middle School", 
+        "grades": "Grades 6–8",
+        "description": "Transitional years building academic foundation and exploring diverse subjects.",
+        "icon": "book",
+        "path": "/academics/middle"
+      },
+      {
+        "title": "High School",
+        "grades": "Grades 9–12", 
+        "description": "Advanced preparation for higher education and career pathways.",
+        "icon": "microscope",
+        "path": "/academics/high"
+      },
+      {
+        "title": "Sports & Arts",
+        "grades": "All Grades",
+        "description": "Comprehensive development through athletics, arts, and extracurricular activities.",
+        "icon": "running",
+        "path": "/academics/sports"
+      }
+    ]
+  },
+  "campusGallery": {
+    "title": "Campus Life",
+    "images": [
+      {
+        "src": "/images/library.png",
+        "title": "Modern Library",
+        "description": "10,000+ books & digital resources",
+        "size": "large"
+      },
+      {
+        "src": "/images/lab.png",
+        "title": "Science Lab", 
+        "description": "Advanced research facilities",
+        "size": "small"
+      },
+      {
+        "src": "/images/sports.png",
+        "title": "Sports Ground",
+        "description": "Olympic standard facilities",
+        "size": "medium"
+      },
+      {
+        "src": "/images/auditorium.png",
+        "title": "Auditorium",
+        "description": "500-seat capacity",
+        "size": "small"
+      },
+      {
+        "src": "/images/art.png",
+        "title": "Art Room",
+        "description": "Creative expression space",
+        "size": "small"
+      },
+      {
+        "src": "/images/pool.png",
+        "title": "Swimming Pool",
+        "description": "Olympic size pool",
+        "size": "small"
+      }
+    ]
+  },
+  "testimonials": [
+    {
+      "text": "Greenwood Academy has transformed my child's learning experience. The dedicated teachers and modern facilities create the perfect environment for academic excellence.",
+      "author": "Sarah Johnson",
+      "role": "Parent",
+      "avatar": "https://picsum.photos/seed/parent1/60/60",
+      "rating": 5
+    },
+    {
+      "text": "The holistic approach to education at Greenwood Academy has helped me develop not just academically but also as a person. I'm proud to be a student here.",
+      "author": "Michael Chen",
+      "role": "Grade 10 Student",
+      "avatar": "https://picsum.photos/seed/student1/60/60",
+      "rating": 5
+    },
+    {
+      "text": "As a teacher, I appreciate the supportive environment and focus on innovative teaching methods. Greenwood Academy truly values education.",
+      "author": "Emily Rodriguez",
+      "role": "Science Teacher",
+      "avatar": "https://picsum.photos/seed/teacher1/60/60",
+      "rating": 5
+    }
+  ],
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "Have questions? We're here to help. Fill this form and we'll get back to you within 24 hours.",
+    "formFields": [
+      { "name": "name", "label": "Your Name", "type": "text", "required": true },
+      { "name": "email", "label": "Email Address", "type": "email", "required": true },
+      { "name": "phone", "label": "Phone", "type": "tel", "required": true },
+      { "name": "subject", "label": "Subject", "type": "text", "required": true },
+      { "name": "message", "label": "Message", "type": "textarea", "required": true }
+    ]
+  },
+  "footer": {
+    "copyright": "© 2026 Greenwood Academy",
+    "links": [
+      { "name": "Privacy Policy", "path": "/privacy" }
+    ]
+  }
+}

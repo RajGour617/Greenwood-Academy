@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Greenwood Academy - Excellence in Education</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      body { font-family: 'Poppins', sans-serif; }
+      .btn-primary { background-color: #16a34a; }
+      .btn-primary:hover { background-color: #15803d; }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Loading Screen -->
+    <div id="loading" class="min-h-screen flex items-center justify-center">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold mb-4" style="color: #16a34a;">Greenwood Academy</h1>
+        <p class="text-gray-600 mb-8">Loading your experience...</p>
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
+      </div>
+    </div>
+
+    <!-- React App Container -->
+    <div id="root"></div>
+    
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // hide loading screen shortly after app loads
+      setTimeout(() => {
+        const loading = document.getElementById('loading');
+        if (loading) loading.classList.add('hidden');
+      }, 3000);
+    </script>
+  </body>
+</html>
