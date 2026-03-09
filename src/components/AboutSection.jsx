@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaCheck } from 'react-icons/fa';
 import content from '../data/content.json';
+import Reveal from './Reveal';
 
 const AboutSection = () => {
   return (
@@ -9,19 +10,20 @@ const AboutSection = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Image */}
-          <div className="relative">
+          <Reveal className="relative">
             <img
               src={content.about.image}
               alt="Greenwood Academy Campus"
+              loading="lazy"
               className="rounded-2xl shadow-large w-full"
             />
             <div className="absolute top-4 right-4 bg-secondary-gold text-primary-green px-4 py-2 rounded-lg font-semibold">
               {content.about.badge}
             </div>
-          </div>
+          </Reveal>
 
           {/* Content */}
-          <div>
+          <Reveal>
             <div className="text-secondary-gold font-semibold mb-4">
               {content.about.subtitle}
             </div>
@@ -51,11 +53,11 @@ const AboutSection = () => {
             >
               Read More →
             </Link>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>
   );
 };
 
-export default AboutSection;
+export default AboutSection; // code refreshed to update linter

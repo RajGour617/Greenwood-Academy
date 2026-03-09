@@ -12,7 +12,7 @@ const RegisterPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Registration submitted (simulation)');
+    alert('Registration submitted');
   };
 
   return (
@@ -56,7 +56,7 @@ const RegisterPage = () => {
                 required
               />
             </div>
-            <button className="w-full bg-primary-green text-white py-2 rounded-lg hover:bg-primary-dark transition transform hover:scale-105 duration-200">
+            <button className="w-full bg-secondary-gold text-primary-green py-2 rounded-lg font-semibold bg-yellow-400 transition transform hover:scale-105 duration-200">
               Submit
             </button>
           </form>

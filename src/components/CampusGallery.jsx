@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import content from '../data/content.json';
+import Reveal from './Reveal';
 
 const CampusGallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -30,7 +31,7 @@ const CampusGallery = () => {
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12 auto-rows-[200px]">
           {content.campusGallery.images.map((image, index) => (
-            <div
+            <Reveal
               key={index}
               className={`relative overflow-hidden rounded-xl cursor-pointer group ${getSizeClasses(image.size)}`}
               onClick={() => setSelectedImage(image)}
@@ -38,6 +39,7 @@ const CampusGallery = () => {
               <img
                 src={image.src}
                 alt={image.title}
+                loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               />
               
@@ -48,7 +50,7 @@ const CampusGallery = () => {
                   <p className="text-sm text-gray-200">{image.description}</p>
                 </div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
 

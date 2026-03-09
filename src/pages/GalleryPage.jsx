@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import content from '../data/content.json';
+import Reveal from '../components/Reveal';
 
 const GalleryPage = () => {
   const images = content.campusGallery.images;
@@ -16,13 +17,13 @@ const GalleryPage = () => {
           </h1>
           <div className="grid md:grid-cols-3 gap-6">
             {images.map((img, idx) => (
-              <div key={idx} className="relative overflow-hidden rounded-lg">
-                <img src={img.src} alt={img.title} className="w-full h-64 object-cover" />
+              <Reveal key={idx} className="relative overflow-hidden rounded-lg">
+                <img src={img.src} alt={img.title} loading="lazy" className="w-full h-64 object-cover" />
                 <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4 text-white">
                   <h3 className="font-semibold">{img.title}</h3>
                   <p className="text-sm">{img.description}</p>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

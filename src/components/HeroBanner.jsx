@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaPlay, FaMapMarkerAlt, FaPhone, FaEnvelope, FaCheck } from 'react-icons/fa';
 import content from '../data/content.json';
+import Reveal from './Reveal';
 
 const HeroBanner = () => {
   return (
@@ -12,12 +13,13 @@ const HeroBanner = () => {
         <img
           src={content.hero.backgroundImage}
           alt="Greenwood Academy Campus"
+          loading="lazy"
           className="w-full h-full object-cover mix-blend-overlay"
         />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+      <Reveal className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
         {/* Badge */}
         <div className="inline-flex items-center space-x-2 bg-secondary-gold text-primary-green px-4 py-2 rounded-full mb-6 font-semibold">
           <FaTrophy />
@@ -68,7 +70,7 @@ const HeroBanner = () => {
             </div>
           ))}
         </div>
-      </div>
+      </Reveal>
 
       {/* Contact Strip */}
       <div className="absolute bottom-0 left-0 right-0 bg-primary-green/95 backdrop-blur-sm text-white py-4">

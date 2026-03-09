@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import Reveal from '../components/Reveal';
 import '../styles/original.css';
 
 const HomePage = () => {
@@ -82,9 +83,10 @@ const HomePage = () => {
       <Navbar />
 
       {/* Hero Section */}
+      <Reveal>
       <section className="hero" id="home">
         <div className="hero-background">
-          <img src="/images/home.png" alt="Modern School Campus" />
+          <img src="/images/home.png" alt="Modern School Campus" loading="lazy" />
         </div>
         <div className="hero-overlay"></div>
         <div className="hero-content">
@@ -117,8 +119,10 @@ const HomePage = () => {
           <span><i className="fas fa-envelope"></i> info@greenwoodacademy.edu</span>
         </div>
       </section>
+      </Reveal>
 
       {/* Quick Stats Section */}
+      <Reveal>
       <section className="stats" id="stats">
         <div className="container">
           <div className="stats-grid">
@@ -153,13 +157,15 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+      </Reveal>
 
       {/* About Section */}
+      <Reveal>
       <section className="about" id="about">
         <div className="container">
           <div className="about-grid">
             <div className="about-image">
-              <img src="/images/img1.png" alt="Modern Classroom" />
+              <img src="/images/img1.png" alt="Modern Classroom" loading="lazy" />
               <div className="image-badge">Since 1999 | 25 Years</div>
             </div>
             <div className="about-content">
@@ -193,8 +199,10 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+      </Reveal>
 
       {/* Academics Section */}
+      <Reveal>
       <section className="academics" id="academics">
         <div className="container">
           <div className="section-header">
@@ -241,49 +249,51 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+      </Reveal>
 
       {/* Campus Life Gallery */}
+      <Reveal>
       <section className="campus-gallery" id="campus">
         <div className="container">
           <h2 className="gallery-title">Campus Life</h2>
           <div className="gallery-grid">
             <div className="gallery-item large">
-              <img src="/images/library.png" alt="Modern Library" />
+              <img src="/images/library.png" alt="Modern Library" loading="lazy" />
               <div className="image-overlay">
                 <h4>Modern Library</h4>
                 <p>10,000+ books & digital resources</p>
               </div>
             </div>
             <div className="gallery-item small">
-              <img src="/images/lab.png" alt="Science Lab" />
+              <img src="/images/lab.png" alt="Science Lab" loading="lazy" />
               <div className="image-overlay">
                 <h4>Science Lab</h4>
                 <p>Advanced research facilities</p>
               </div>
             </div>
             <div className="gallery-item medium">
-              <img src="/images/sports.png" alt="Sports Ground" />
+              <img src="/images/sports.png" alt="Sports Ground" loading="lazy" />
               <div className="image-overlay">
                 <h4>Sports Ground</h4>
                 <p>Olympic standard facilities</p>
               </div>
             </div>
             <div className="gallery-item small">
-              <img src="/images/auditorium.png" alt="Auditorium" />
+              <img src="/images/auditorium.png" alt="Auditorium" loading="lazy" />
               <div className="image-overlay">
                 <h4>Auditorium</h4>
                 <p>500-seat capacity</p>
               </div>
             </div>
             <div className="gallery-item small">
-              <img src="/images/art.png" alt="Art Room" />
+              <img src="/images/art.png" alt="Art Room" loading="lazy" />
               <div className="image-overlay">
                 <h4>Art Room</h4>
                 <p>Creative expression space</p>
               </div>
             </div>
             <div className="gallery-item small">
-              <img src="/images/pool.png" alt="Swimming Pool" />
+              <img src="/images/pool.png" alt="Swimming Pool" loading="lazy" />
               <div className="image-overlay">
                 <h4>Swimming Pool</h4>
                 <p>Olympic size pool</p>
@@ -293,8 +303,10 @@ const HomePage = () => {
           <Link to="/gallery" className="gallery-btn">View Full Gallery →</Link>
         </div>
       </section>
+      </Reveal>
 
       {/* Testimonials Section */}
+      <Reveal>
       <section className="testimonials" id="testimonials">
         <div className="container">
           <div className="section-header">
@@ -318,7 +330,7 @@ const HomePage = () => {
                   "{testimonial.text}"
                 </p>
                 <div className="testimonial-author">
-                  <img src={testimonial.image} alt={testimonial.author} />
+                  <img src={testimonial.image} alt={testimonial.author} loading="lazy" />
                   <div>
                     <h4>{testimonial.author}</h4>
                     <p>{testimonial.role}</p>
@@ -337,8 +349,10 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+      </Reveal>
 
       {/* News & Events Section */}
+      <Reveal>
       <section className="news-events" id="news">
         <div className="container">
           <div className="news-header">
@@ -347,7 +361,7 @@ const HomePage = () => {
           </div>
           <div className="news-grid">
             <div className="news-item">
-              <img src="/images/exhibition.png" alt="Science Exhibition" />
+              <img src="/images/exhibition.png" alt="Science Exhibition" loading="lazy" />
               <div className="news-content">
                 <div className="news-meta">
                   <span className="date">April 15, 2026</span>
@@ -359,7 +373,7 @@ const HomePage = () => {
               </div>
             </div>
             <div className="news-item">
-              <img src="/images/competition.png" alt="Sports Meet" />
+              <img src="/images/competition.png" alt="Sports Meet" loading="lazy" />
               <div className="news-content">
                 <div className="news-meta">
                   <span className="date">April 22, 2026</span>
@@ -371,7 +385,7 @@ const HomePage = () => {
               </div>
             </div>
             <div className="news-item">
-              <img src="/images/festival.png" alt="Cultural Fest" />
+              <img src="/images/festival.png" alt="Cultural Fest" loading="lazy" />
               <div className="news-content">
                 <div className="news-meta">
                   <span className="date">May 1, 2026</span>
@@ -385,8 +399,10 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+      </Reveal>
 
       {/* Admissions CTA Section */}
+      <Reveal>
       <section className="admissions-cta" id="admissions">
         <div className="container">
           <div className="admissions-grid">
@@ -423,6 +439,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+      </Reveal>
 
       {/* Footer */}
       <footer className="footer" id="contact">
@@ -431,7 +448,7 @@ const HomePage = () => {
             <div className="footer-brand">
               <div className="nav-brand">
                 <div className="logo-placeholder">
-                  <img src="/images/logo.png" alt="Greenwood Academy Logo" />
+                  <img src="/images/logo.png" alt="Greenwood Academy Logo" loading="lazy" />
                 </div>
                 <div className="brand-text">
                   <span className="brand-name" style={{ color: 'antiquewhite' }}>Greenwood<br />Academy</span>
@@ -476,7 +493,7 @@ const HomePage = () => {
                 <p><i className="fas fa-envelope"></i> info@greenwoodacademy.edu</p>
               </div>
               <div className="map-preview">
-                <img src="https://picsum.photos/seed/map/300/150" alt="Map Preview" />
+                <img src="https://picsum.photos/seed/map/300/150" alt="Map Preview" loading="lazy" />
               </div>
             </div>
           </div>

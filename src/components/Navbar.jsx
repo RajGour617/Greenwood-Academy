@@ -5,9 +5,11 @@ import { FaGraduationCap, FaShieldAlt, FaChalkboardTeacher } from 'react-icons/f
 
 const Navbar = () => {
   const location = useLocation();
-  const isHome = location.pathname === "/";
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(!!sessionStorage.getItem('user'));
+
+  // list of homepage sections that use hash links
+  const sectionIds = ["home","about","academics","admissions","campus","results","contact"];
 
   const logout = () => {
     sessionStorage.removeItem('user');
@@ -42,7 +44,7 @@ const Navbar = () => {
         <div className="nav-brand">
           <div className="logo-placeholder">
             <Link to="/">
-              <img src="/images/logo.png" alt="Greenwood Academy Logo" />
+              <img src="/images/logo.png" alt="Greenwood Academy Logo" loading="lazy" />
             </Link>
           </div>
           <div className="brand-text">
@@ -56,27 +58,28 @@ const Navbar = () => {
         {/* menu links */}
         <div className="nav-menu">
           {pageLinks.map(link => {
-            if (isHome && link.path === "/") {
-              return (
-                <HashLink smooth key={link.name} to="/#home" className="nav-link active">
-                  {link.name}
-                </HashLink>
-              );
+            const sectionId = link.name.toLowerCase().replace(/\s+/g, "");
+            const isSection = sectionIds.includes(sectionId) && location.pathname === "/";
+            const to = isSection ? `/#${sectionId}` : link.path;
+            const LinkComp = isSection ? HashLink : Link;
+
+            // determine active state: either exact path match or matching hash for sections
+            let isActive = false;
+            if (isSection) {
+              isActive = (location.hash === `#${sectionId}`) || (sectionId === 'home' && location.pathname === "/");
+            } else {
+              isActive = location.pathname === link.path;
             }
-            if (isHome && link.path.startsWith("/")) {
-              const sectionId = link.name.toLowerCase().replace(/\s+/g, "");
-              if (["home","about","academics","admissions","campus","results","contact"].includes(sectionId)) {
-                return (
-                  <HashLink smooth key={link.name} to={`/#${sectionId}`} className="nav-link">
-                    {link.name}
-                  </HashLink>
-                );
-              }
-            }
+
             return (
-              <Link key={link.name} to={link.path} className="nav-link">
+              <LinkComp
+                smooth={isSection}
+                key={link.name}
+                to={to}
+                className={`nav-link${isActive ? ' active' : ''}`}
+              >
                 {link.name}
-              </Link>
+              </LinkComp>
             );
           })}
         </div>

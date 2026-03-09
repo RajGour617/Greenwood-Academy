@@ -6,13 +6,13 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen pt-16">
       <Navbar />
-      
+
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-8 text-center">
             About Greenwood Academy
           </h1>
-          
+
           <div className="max-w-4xl mx-auto">
             <p className="text-lg text-gray-700 mb-12 text-center leading-relaxed">
               Greenwood Academy has been nurturing learners since 1999. We provide a holistic education that blends academic excellence with extracurricular development.

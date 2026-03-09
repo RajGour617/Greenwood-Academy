@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaQuoteLeft, FaStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import content from '../data/content.json';
+import Reveal from './Reveal';
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -32,7 +33,7 @@ const Testimonials = () => {
         <div className="max-w-4xl mx-auto">
           <div className="relative">
             {/* Testimonial Card */}
-            <div className="bg-white rounded-2xl shadow-large p-8 md:p-12">
+            <Reveal className="bg-white rounded-2xl shadow-large p-8 md:p-12">
               {/* Quote Icon */}
               <div className="text-4xl text-secondary-gold mb-6">
                 <FaQuoteLeft />
@@ -55,6 +56,7 @@ const Testimonials = () => {
                 <img
                   src={content.testimonials[currentIndex].avatar}
                   alt={content.testimonials[currentIndex].author}
+                  loading="lazy"
                   className="w-16 h-16 rounded-full object-cover"
                 />
                 <div>

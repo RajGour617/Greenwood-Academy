@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Reveal from '../components/Reveal';
 
 const articles = [
   {
@@ -41,8 +42,8 @@ const NewsPage = () => {
           </h1>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {articles.map((article) => (
-              <div key={article.slug} className="bg-white rounded-xl shadow-lg overflow-hidden">
-                <img src={article.image} alt={article.title} className="w-full h-48 object-cover" />
+              <Reveal key={article.slug} className="bg-white rounded-xl shadow-lg overflow-hidden">
+                <img src={article.image} alt={article.title} loading="lazy" className="w-full h-48 object-cover" />
                 <div className="p-6">
                   <div className="text-sm text-gray-500 mb-2">
                     {article.date} &nbsp;•&nbsp; {article.category}
@@ -53,7 +54,7 @@ const NewsPage = () => {
                     Read More →
                   </Link>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

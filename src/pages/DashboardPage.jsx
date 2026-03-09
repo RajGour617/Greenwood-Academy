@@ -77,6 +77,35 @@ const DashboardPage = () => {
   const [selectedTab, setSelectedTab] = React.useState('dashboard');
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
+  // inject animation rules once after mount (wrapped in effect to avoid render-time errors)
+  React.useEffect(() => {
+    try {
+      const styleSheet = document.styleSheets[0];
+      if (styleSheet && !styleSheet.cssRules.namedItem('spin-slow')) {
+        styleSheet.insertRule("@keyframes spin-slow{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}", styleSheet.cssRules.length);
+        styleSheet.insertRule(".animate-spin-slow{animation:spin-slow 6s linear infinite;}", styleSheet.cssRules.length);
+
+        // line draw animation for SVG polyline
+        styleSheet.insertRule("@keyframes draw-line{from{stroke-dashoffset:100;}to{stroke-dashoffset:0;}}", styleSheet.cssRules.length);
+        styleSheet.insertRule(".animate-draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw-line 2s ease-out forwards;}", styleSheet.cssRules.length);
+
+        // simple bar grow animation
+        styleSheet.insertRule("@keyframes grow-bar{from{transform:scaleY(0);}to{transform:scaleY(1);}}", styleSheet.cssRules.length);
+        styleSheet.insertRule(".animate-bar{transform-origin:bottom;animation:grow-bar 1s ease-out;}", styleSheet.cssRules.length);
+      }
+    } catch (e) {
+      // ignore if stylesheet access is blocked (CORS or undefined)
+      console.warn('unable to inject chart animations', e);
+    }
+  }, []);
+
+  // if user not logged in redirect back to login (helps when state is lost on refresh)
+  React.useEffect(() => {
+    if (!sessionStorage.getItem('user')) {
+      navigate('/login');
+    }
+  }, [navigate]);
+
   const config = dashboardConfig[type] || dashboardConfig.student;
   const IconComponent = config.icon;
 
@@ -99,8 +128,18 @@ const DashboardPage = () => {
     setSelectedTab('dashboard');
   }, [type]);
 
+  // random avatar border color generated once via effect (avoids impure render)
+  const [avatarBorderColor, setAvatarBorderColor] = React.useState('#000');
+  React.useEffect(() => {
+    setAvatarBorderColor('#' + Math.floor(Math.random() * 16777215).toString(16));
+  }, []);
+
   // function to render content for the currently selected tab
   const renderTabContent = () => {
+    // sanity check - if config is missing (unexpected type) show message
+    if (!config) {
+      return <div className="p-6 text-center text-red-600">Unknown dashboard type: {type}</div>;
+    }
     switch (selectedTab) {
       case 'dashboard':
         if (type === 'student') {
@@ -168,18 +207,173 @@ const DashboardPage = () => {
         } else {
           // admin
           return (
-            <div className="grid md:grid-cols-3 gap-6">
-              {config.widgets.map((widget, index) => {
-                const WidgetIcon = widget.icon;
-                return (
-                  <div key={index} className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center">
-                    <WidgetIcon className="w-10 h-10 text-green-600 mb-4" />
-                    <span className="text-2xl font-bold text-gray-800">{widget.value}</span>
-                    <h3 className="text-gray-600 font-medium mt-2">{widget.title}</h3>
+            <>
+              <div className="grid md:grid-cols-3 gap-6">
+                {config.widgets.map((widget, index) => {
+                  const WidgetIcon = widget.icon;
+                  return (
+                    <div key={index} className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center">
+                      <WidgetIcon className="w-10 h-10 text-green-600 mb-4" />
+                      <span className="text-2xl font-bold text-gray-800">{widget.value}</span>
+                      <h3 className="text-gray-600 font-medium mt-2">{widget.title}</h3>
+                    </div>
+                  );
+                })}
+              </div>
+              {/* charts for admin */}
+              <div className="mt-8 space-y-6">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {/* attendance pie chart */}
+                  <div className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center">
+                    <h3 className="font-semibold mb-4">Attendance Distribution</h3>
+                    <div className="w-56 h-56 rounded-full animate-spin-slow" style={{
+                      background: 'conic-gradient(#16a34a 0 80%, #fbbf24 80% 90%, #ef4444 90% 100%)'
+                    }}></div>
+                    <div className="mt-4 text-center text-sm">
+                      <div><span className="inline-block w-4 h-4 bg-primary-green rounded-full mr-2"></span>Present 80%</div>
+                      <div><span className="inline-block w-4 h-4 bg-yellow-400 rounded-full mr-2"></span>Late 10%</div>
+                      <div><span className="inline-block w-4 h-4 bg-red-500 rounded-full mr-2"></span>Absent 10%</div>
+                    </div>
                   </div>
-                );
-              })}
-            </div>
+                  {/* enrollment column chart */}
+                  <div className="bg-white rounded-xl shadow-lg p-6">
+                    <h3 className="font-semibold mb-4">Monthly Enrollments</h3>
+                    <svg className="w-full h-48" viewBox="0 0 160 72" xmlns="http://www.w3.org/2000/svg">
+                      {[20,40,60,80].map(y=> (
+                        <line key={y} x1="0" y1={72 - y*0.72} x2="160" y2={72 - y*0.72} stroke="#d7d7d7" strokeWidth="0.5" />
+                      ))}
+                      {[{"m":"Jan","v":50},{"m":"Feb","v":60},{"m":"Mar","v":55},{"m":"Apr","v":70},{"m":"May","v":65},{"m":"Jun","v":80}].map((item,i)=>(
+                        <g key={i}>
+                          <rect
+                            x={10 + i*24}
+                            y={72 - item.v*0.72}
+                            width="16"
+                            height={item.v*0.72}
+                            fill="#3b82f6"
+                          />
+                          <text x={10 + i*24 + 8} y={72 - item.v*0.72 - 6} fontSize="9" textAnchor="middle" fill="#374151">
+                            {item.v}
+                          </text>
+                          <text x={10 + i*24 + 8} y={70} fontSize="9" textAnchor="middle" fill="#374151">
+                            {item.m}
+                          </text>
+                        </g>
+                      ))}
+                    </svg>
+                    <div className="text-s text-gray-600 mt-2">Students enrolled</div>
+                  </div>
+                  {/* grade distribution pie chart */}
+                  <div className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center">
+                    <h3 className="font-semibold mb-4">Grade Distribution</h3>
+                    <div className="w-52 h-52 rounded-full" style={{
+                      background: 'conic-gradient(#3b82f6 0 40%, #10b981 40% 70%, #f59e0b 70% 90%, #ef4444 90% 100%)'
+                    }}></div>
+                    <div className="mt-4 text-center text-sm">
+                      <div><span className="inline-block w-4 h-4 bg-blue-500 rounded-full mr-2"></span>A &amp; A- 40%</div>
+                      <div><span className="inline-block w-4 h-4 bg-green-500 rounded-full mr-2"></span>B &amp; B+ 30%</div>
+                      <div><span className="inline-block w-4 h-4 bg-yellow-500 rounded-full mr-2"></span>C 20%</div>
+                      <div><span className="inline-block w-4 h-4 bg-red-500 rounded-full mr-2"></span>D &amp; F 10%</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white rounded-xl shadow-lg p-6">
+                  <h3 className="font-semibold mb-4">Fees Submission</h3>
+                  <svg className="w-full h-80" viewBox="0 0 260 120" xmlns="http://www.w3.org/2000/svg">
+                    {/* chart title */}
+                    <text x="145" y="10" textAnchor="middle" fontSize="10" fontWeight="bold">
+                      School Fee Submission Status
+                    </text>
+                    {/* computed bars and axes */}
+                    {(() => {
+                      const data = [
+                        { label: 'Submitted', value: 320, color: '#27e734' },
+                        { label: 'Due', value: 95, color: '#e3f42f' },
+                        { label: 'Not Paid', value: 40, color: '#f53f39' }
+                      ];
+                      const maxVal = Math.max(...data.map(d => d.value));
+                      const scale = 80 / maxVal; // 80px available height
+                      return (
+                        <>
+                          {/* horizontal grid & labels */}
+                          {[0, maxVal / 2, maxVal].map((val, i) => (
+                            <g key={i}>
+                              <line
+                                x1="30"
+                                y1={100 - val * scale}
+                                x2="220"
+                                y2={100 - val * scale}
+                                stroke="#d5d5d8"
+                                strokeWidth="0.5"
+                              />
+                              <text
+                                x="25"
+                                y={100 - val * scale + 4}
+                                fontSize="7"
+                                fill="#6b7280"
+                                textAnchor="end"
+                              >
+                                {Math.round(val)}
+                              </text>
+                            </g>
+                          ))}
+                          {/* bars with values and labels */}
+                          {data.map((item, i) => {
+                            const barWidth = 30;
+                            const spacing = 80;
+                            const x = 40 + i * spacing;
+                            const height = item.value * scale;
+                            return (
+                              <g key={i}>
+                                <rect
+                                  className="animate-bar"
+                                  x={x}
+                                  y={100 - height}
+                                  width={barWidth}
+                                  height={height}
+                                  fill={item.color}
+                                />
+                                <text
+                                  x={x + barWidth / 2}
+                                  y={100 - height - 6}
+                                  fontSize="8"
+                                  textAnchor="middle"
+                                  fill="#374151"
+                                >
+                                  {item.value}
+                                </text>
+                                <text
+                                  x={x + barWidth / 2}
+                                  y={110}
+                                  fontSize="8"
+                                  textAnchor="middle"
+                                  fill="#374151"
+                                >
+                                  {item.label}
+                                </text>
+                              </g>
+                            );
+                          })}
+                        </>
+                      );
+                    })()}
+                    {/* axes and axis labels */}
+                    <line x1="30" y1="100" x2="240" y2="100" stroke="#374151" strokeWidth="1" />
+                    <text x="130" y="120" fontSize="8" textAnchor="middle">
+                      Fee Status
+                    </text>
+                    <text
+                      x="12"
+                      y="55"
+                      fontSize="8"
+                      transform="rotate(-90 12,60)"
+                      textAnchor="middle"
+                    >
+                      Number of Students
+                    </text>
+                  </svg>
+                </div>
+              </div>
+            </>
           );
         }
       case 'classes':
@@ -476,7 +670,7 @@ const DashboardPage = () => {
             )}
           </div>
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden border-2" style={{borderColor: '#'+Math.floor(Math.random()*16777215).toString(16)}}>
+            <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden border-2" style={{borderColor: avatarBorderColor}}>
               <i className="fas fa-user text-gray-500"></i>
             </div>
             <button

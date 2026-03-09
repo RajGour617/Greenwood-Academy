@@ -34,6 +34,20 @@ const loginTypes = [
   }
 ];
 
+// map loginTypes color string to tailwind classes
+const colorMap = {
+  blue: 'border-blue-500 text-blue-600',
+  red: 'border-red-500 text-red-600',
+  green: 'border-green-500 text-green-600'
+};
+
+// button background colors for each login type
+const buttonBg = {
+  student: 'bg-blue-500 hover:bg-blue-600',
+  admin: 'bg-red-500 hover:bg-red-600',
+  faculty: 'bg-green-500 hover:bg-green-600',
+};
+
 const LoginPage = () => {
   const { type } = useParams();
   const [loginType, setLoginType] = useState('student');
@@ -122,18 +136,20 @@ const LoginPage = () => {
   }, [loginType]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4 pt-16" style={{ backgroundColor: '#d4af37' }}>
-      <div className="max-w-md w-full bg-white rounded-3xl shadow-xl p-8">
+    <div className="min-h-screen flex items-center justify-center py-12 px-4 pt-16 bg-gradient-to-br from-secondary-gold/80 to-secondary-gold">
+      <div className={`max-w-md w-full bg-white rounded-3xl shadow-xl p-8 border-t-8 ${
+        colorMap[currentLoginType.color]
+      }`}>
         {/* Logo */}
         <div className="text-center mb-6">
           <div className="w-24 h-24 bg-secondary-gold rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <span className="text-white font-bold text-3xl">GA</span>
+            {/* <span className="text-white font-bold text-3xl">GA</span> */}
+            <span>
+              <img src="/images/logo.png" alt="Greenwood Academy Logo" loading="lazy" style={{ borderRadius: '50%' }} />
+            </span>
           </div>
-          <h1 className="text-3xl font-bold text-text-charcoal">{currentLoginType?.title || 'Login'}</h1>
-          <p className="text-gray-600 mt-2">{currentLoginType?.description || ''}</p>
+          <h1 className={`text-3xl font-bold ${colorMap[currentLoginType.color].split(' ')[1]}`}>{currentLoginType?.title || 'Login'}</h1>
         </div>
-
-        {/* Login Type Selector */}
         <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
           <div className="grid grid-cols-3 gap-2 mb-6">
             {loginTypes.map((type) => {
@@ -143,14 +159,12 @@ const LoginPage = () => {
                   key={type.id}
                   onClick={() => setLoginType(type.id)}
                   className={`p-3 rounded-lg border-2 transition-all duration-300 transform hover:scale-105 ${loginType === type.id
-                      ? 'border-primary-green bg-primary-green/10 shadow-md'
+                      ? `border-${type.color}-500 bg-${type.color}-500/10 shadow-md`
                       : 'border-gray-200 hover:border-gray-300 hover:shadow-sm'
                     }`}
                 >
-                  <TypeIcon className={`w-6 h-6 mx-auto mb-1 ${loginType === type.id ? 'text-primary-green' : 'text-gray-400'
-                    }`} />
-                  <span className={`text-xs font-medium ${loginType === type.id ? 'text-primary-green' : 'text-gray-600'
-                    }`}>
+                  <TypeIcon className={`w-6 h-6 mx-auto mb-1 ${loginType === type.id ? `text-${type.color}-500` : 'text-gray-400'}`} />
+                  <span className={`text-xs font-medium ${loginType === type.id ? `text-${type.color}-500` : 'text-gray-600'}`}>
                     {type.id.charAt(0).toUpperCase() + type.id.slice(1)}
                   </span>
                 </button>
@@ -159,7 +173,7 @@ const LoginPage = () => {
           </div>
 
           <div className="text-center mb-6">
-            <IconComponent className="w-12 h-12 text-primary-green mx-auto mb-3 animate-pulse" />
+            <IconComponent className={`w-12 h-12 mx-auto mb-3 animate-pulse ${colorMap[currentLoginType.color].split(' ')[1]}`} />
             <h2 className="text-xl font-bold text-text-charcoal mb-2">
               {currentLoginType.title}
             </h2>
@@ -226,7 +240,7 @@ const LoginPage = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-secondary-gold text-white py-4 rounded-xl text-lg font-semibold hover:bg-secondary-gold/90 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none mt-4 shadow-lg hover:shadow-xl"
+              className={`w-full text-white py-4 rounded-xl text-lg font-semibold transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none mt-4 shadow-lg hover:shadow-xl ${buttonBg[loginType]}`}
             >
               {isLoading ? (
                 <span className="flex items-center justify-center">
