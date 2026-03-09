@@ -1,0 +1,434 @@
+/* ===== RESPONSIVE STYLES ===== */
+
+.mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999; /* sits below menu now */
+    display: none;
+}
+
+.navbar.scrolled {
+    height: 64px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.desktop-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.mobile-actions {
+    display: none;
+}
+
+.mobile-login-btn {
+    padding: 8px 16px;
+    border: 2px solid #0f5132;
+    background: transparent;
+    color: #0f5132;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.mobile-login-btn:hover {
+    background: #0f5132;
+    color: white;
+}
+
+.mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #0f5132;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.brand-greenwood,
+.brand-academy {
+    display: inline;
+}
+
+.brand-greenwood::after {
+    content: ' ';
+}
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 40px;
+    }
+
+    .nav-container {
+        padding: 0 40px;
+    }
+
+    .hero-content {
+        padding-left: 40px;
+    }
+
+    .hero-title {
+        font-size: 48px;
+    }
+
+    .academics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .nav-container {
+        padding: 0 16px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        height: 100%;
+        padding-top: 12px;
+    }
+
+    .nav-brand {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .brand-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .nav-actions {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        margin-left: auto;
+    }
+
+    .mobile-login-btn {
+        padding: 5px 12px;
+        font-size: 10px;
+        border-radius: 14px;
+        white-space: nowrap;
+        border-width: 1.5px;
+        font-weight: 600;
+    }
+
+    .mobile-toggle {
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mobile-overlay {
+        display: block;
+    }
+
+    .mobile-toggle {
+        display: block;
+    }
+
+    .mobile-actions {
+        display: block;
+    }
+
+    .desktop-actions {
+        display: none;
+    }
+
+    .brand-greenwood::after {
+        content: '';
+    }
+
+    .brand-name {
+        font-size: 12px;
+        font-weight: 700;
+        display: block;
+        line-height: 1.2;
+    }
+
+    .brand-greenwood,
+    .brand-academy {
+        display: block;
+    }
+
+    .brand-subtitle {
+        font-size: 8px;
+        margin-top: 1px;
+        font-weight: 500;
+    }
+
+    .logo-placeholder img {
+        width: 38px;
+        height: 38px;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding: 20px;
+        /* transform now controlled inline */
+        transition: transform 0.3s ease, visibility 0s linear 0.3s;
+        overflow-y: auto;
+        box-shadow: 0 20px 64px rgba(0, 0, 0, 0.16);
+        z-index: 1001; /* above overlay */
+    }
+
+    .nav-menu.mobile-open {
+        transform: translateX(0);
+    }
+
+    .nav-link {
+        padding: 18px 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        font-size: 17px;
+        font-weight: 600;
+        color: #1a1a2a;
+        display: block;
+        transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+        background: rgba(15, 81, 50, 0.05);
+        color: #0f5132;
+        padding-left: 28px;
+    }
+
+    .nav-link.active {
+        background: rgba(15, 81, 50, 0.1);
+        color: #0f5132;
+        border-left: 4px solid #0f5132;
+        padding-left: 24px;
+    }
+
+    .hero-content {
+        padding-left: 20px;
+    }
+
+    .hero-overlay {
+        width: 100%;
+    }
+
+    .hero-title {
+        font-size: 32px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    .hero-badge {
+        font-size: 12px;
+        padding: 6px 12px;
+        max-width: 90%;
+    }
+
+    .cta-primary,
+    .cta-secondary {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .cta-primary,
+    .cta-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .trust-badges {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .hero-contact-strip {
+        padding: 16px 20px;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .section-header h2,
+    .about h2,
+    .admissions-content h2,
+    .gallery-title,
+    .news-header h2 {
+        font-size: 28px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .stat-card {
+        padding: 24px 16px;
+    }
+
+    .stat-number {
+        font-size: 36px;
+    }
+
+    .stat-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .academics-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .academic-card {
+        padding: 24px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .gallery-item.large,
+    .gallery-item.medium,
+    .gallery-item.small {
+        grid-row: span 1;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .testimonial-card {
+        padding: 24px;
+    }
+
+    .news-item {
+        flex: 1 1 100%;
+    }
+
+    .news-content h3 {
+        font-size: 18px;
+    }
+
+    .news-content p {
+        font-size: 14px;
+    }
+
+    .admissions-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .admissions-content h2 {
+        font-size: 28px;
+    }
+
+    .admissions-content p {
+        font-size: 16px;
+    }
+
+    .cta-large {
+        padding: 16px 32px;
+        font-size: 16px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+
+    .footer-bottom-links {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .nav-container {
+        padding: 0 16px;
+    }
+
+    .hero-content {
+        padding-left: 16px;
+    }
+
+    .hero-title {
+        font-size: 28px;
+    }
+
+    .hero-subtitle {
+        font-size: 14px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        padding: 20px;
+    }
+
+    .section-header h2,
+    .about h2 {
+        font-size: 24px;
+    }
+
+    .about p,
+    .admissions-content p {
+        font-size: 14px;
+    }
+
+    .hero-contact-strip {
+        padding: 12px 16px;
+    }
+
+    .hero-contact-strip span {
+        font-size: 12px;
+    }
+}

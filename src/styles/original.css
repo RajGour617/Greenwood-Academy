@@ -299,8 +299,10 @@ body {
     width: 60%;
     height: 100%;
     background: linear-gradient(135deg, var(--primary-green), var(--primary-dark));
-    opacity: 0.85;
+    opacity: 0.71;
     z-index: -1;
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
 }
 
 .hero-content {
@@ -317,14 +319,15 @@ body {
 .hero-badge {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     background: var(--secondary-gold);
     color: white;
-    padding: 8px 16px;
+    padding: 7px 16px;
     border-radius: 25px;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 14px;
-    margin-bottom: 24px;
+    margin-top: 13px;
+    margin-bottom: 20px;
     animation: slideInLeft 0.8s ease-out;
     max-width: 50%;
 }
