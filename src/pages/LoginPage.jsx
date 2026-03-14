@@ -34,7 +34,7 @@ const loginTypes = [
   }
 ];
 
-// map loginTypes color string to tailwind classes
+// map loginTypes color string to Tailwind classes
 const colorMap = {
   blue: 'border-blue-500 text-blue-600',
   red: 'border-red-500 text-red-600',
@@ -46,6 +46,18 @@ const buttonBg = {
   student: 'bg-blue-500 hover:bg-blue-600',
   admin: 'bg-red-500 hover:bg-red-600',
   faculty: 'bg-green-500 hover:bg-green-600',
+};
+
+const typeCard = {
+  student: 'border-blue-500 bg-blue-50 text-blue-700',
+  admin: 'border-red-500 bg-red-50 text-red-700',
+  faculty: 'border-green-500 bg-green-50 text-green-700',
+};
+
+const typeCardActive = {
+  student: 'border-blue-500 bg-blue-100 text-blue-800 shadow-lg',
+  admin: 'border-red-500 bg-red-100 text-red-800 shadow-lg',
+  faculty: 'border-green-500 bg-green-100 text-green-800 shadow-lg',
 };
 
 const LoginPage = () => {
@@ -137,9 +149,7 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center py-12 px-4 pt-16 bg-gradient-to-br from-secondary-gold/80 to-secondary-gold">
-      <div className={`max-w-md w-full bg-white rounded-3xl shadow-xl p-8 border-t-8 ${
-        colorMap[currentLoginType.color]
-      }`}>
+      <div className="max-w-xl w-full mx-auto bg-white rounded-3xl shadow-2xl p-8 border-t-8 animate-fade-in">
         {/* Logo */}
         <div className="text-center mb-6">
           <div className="w-24 h-24 bg-secondary-gold rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -154,18 +164,17 @@ const LoginPage = () => {
           <div className="grid grid-cols-3 gap-2 mb-6">
             {loginTypes.map((type) => {
               const TypeIcon = type.icon;
+              const isActive = loginType === type.id;
+              const stateClass = isActive ? typeCardActive[type.id] : typeCard[type.id];
               return (
                 <button
                   key={type.id}
                   onClick={() => setLoginType(type.id)}
-                  className={`p-3 rounded-lg border-2 transition-all duration-300 transform hover:scale-105 ${loginType === type.id
-                      ? `border-${type.color}-500 bg-${type.color}-500/10 shadow-md`
-                      : 'border-gray-200 hover:border-gray-300 hover:shadow-sm'
-                    }`}
+                  className={`p-3 rounded-lg border-2 transition-all duration-300 transform hover:scale-105 ${stateClass}`}
                 >
-                  <TypeIcon className={`w-6 h-6 mx-auto mb-1 ${loginType === type.id ? `text-${type.color}-500` : 'text-gray-400'}`} />
-                  <span className={`text-xs font-medium ${loginType === type.id ? `text-${type.color}-500` : 'text-gray-600'}`}>
-                    {type.id.charAt(0).toUpperCase() + type.id.slice(1)}
+                  <TypeIcon className={`w-6 h-6 mx-auto mb-1 ${isActive ? 'text-current' : 'text-gray-400'}`} />
+                  <span className={`text-xs font-medium ${isActive ? 'text-current' : 'text-gray-600'}`}>
+                    {type.title}
                   </span>
                 </button>
               );

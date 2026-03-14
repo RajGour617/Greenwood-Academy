@@ -1,0 +1,463 @@
+/* ===== TIMETABLE PAGE ===== */
+
+.timetable-page {
+    padding: 28px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ── Header ── */
+.tt-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.tt-header-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #d4af37;
+    margin-bottom: 6px;
+}
+
+.tt-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #0f5132;
+    line-height: 1.2;
+    margin-bottom: 6px;
+}
+
+.tt-subtitle {
+    font-size: 13px;
+    color: #888;
+    font-weight: 500;
+}
+
+.tt-header-stats {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.tt-stat {
+    background: white;
+    border: 1px solid rgba(15, 81, 50, 0.12);
+    border-radius: 14px;
+    padding: 14px 20px;
+    text-align: center;
+    min-width: 80px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.tt-stat-value {
+    display: block;
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f5132;
+    line-height: 1;
+}
+
+.tt-stat-label {
+    display: block;
+    font-size: 10px;
+    color: #999;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+}
+
+/* ── Today banner ── */
+.tt-today-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #0f5132 0%, #0a3d24 100%);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.tt-today-dot-pulse {
+    width: 10px;
+    height: 10px;
+    background: #d4af37;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3); }
+    50%       { box-shadow: 0 0 0 6px rgba(212, 175, 55, 0.1); }
+}
+
+/* ── Day tabs (mobile only) ── */
+.tt-day-tabs {
+    display: none;
+    gap: 8px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+}
+
+.tt-day-tabs::-webkit-scrollbar { display: none; }
+
+.tt-day-tab {
+    position: relative;
+    padding: 9px 18px;
+    border-radius: 22px;
+    border: 2px solid #e0e0e0;
+    background: white;
+    color: #555;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tt-day-tab.active {
+    background: #0f5132;
+    border-color: #0f5132;
+    color: white;
+    box-shadow: 0 4px 12px rgba(15, 81, 50, 0.3);
+}
+
+.tt-day-tab.today {
+    border-color: #d4af37;
+}
+
+.tt-day-today-dot {
+    width: 6px;
+    height: 6px;
+    background: #d4af37;
+    border-radius: 50%;
+}
+
+/* ── Desktop Table ── */
+.tt-table-wrap {
+    overflow-x: auto;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: white;
+}
+
+.tt-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 820px;
+}
+
+.tt-th {
+    padding: 16px 14px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    background: #0f5132;
+    letter-spacing: 0.3px;
+}
+
+.tt-th-meta {
+    background: #0a3d24;
+    width: 110px;
+    font-size: 12px;
+}
+
+.tt-th-today {
+    background: #d4af37 !important;
+}
+
+.tt-th-day {
+    display: block;
+}
+
+.tt-th-today-chip {
+    display: inline-block;
+    background: rgba(255,255,255,0.25);
+    border-radius: 8px;
+    font-size: 9px;
+    padding: 1px 7px;
+    margin-top: 3px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.tt-row:hover td {
+    background: rgba(15, 81, 50, 0.02);
+}
+
+.tt-break-row td {
+    padding: 0;
+}
+
+.tt-break-full {
+    padding: 10px 20px !important;
+    background: #fafafa;
+    border-top: 1px dashed #e0e0e0;
+    border-bottom: 1px dashed #e0e0e0;
+    text-align: center;
+    font-size: 13px;
+    color: #999;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.tt-break-time {
+    font-size: 11px;
+    color: #bbb;
+    margin-left: 4px;
+}
+
+.tt-td {
+    padding: 10px 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    vertical-align: middle;
+}
+
+.tt-td-period {
+    text-align: center;
+    font-weight: 700;
+    font-size: 13px;
+    color: #0f5132;
+    background: #f7fdf9;
+    border-right: 1px solid #e8f5e9;
+    width: 60px;
+}
+
+.tt-td-time {
+    text-align: center;
+    font-size: 11px;
+    color: #777;
+    font-weight: 500;
+    background: #fafafa;
+    border-right: 1px solid #f0f0f0;
+    white-space: nowrap;
+    width: 120px;
+}
+
+.tt-td-cell {
+    text-align: center;
+    padding: 8px;
+}
+
+.tt-today-col {
+    background: rgba(212, 175, 55, 0.04);
+}
+
+.tt-cell-pill {
+    border-radius: 10px;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    text-align: left;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tt-cell-pill:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.tt-cell-icon {
+    font-size: 14px;
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+.tt-cell-main {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #1a1a2a;
+    line-height: 1.3;
+}
+
+.tt-cell-sub {
+    display: block;
+    font-size: 10px;
+    color: #666;
+    font-weight: 500;
+}
+
+.tt-cell-free {
+    font-size: 11px;
+    color: #bbb;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.tt-faculty-pill {}
+
+/* ── Mobile view ── */
+.tt-mobile-view { display: none; }
+
+.tt-mobile-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tt-mobile-card {
+    background: white;
+    border-radius: 14px;
+    padding: 14px 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    border-left: 4px solid #0f5132;
+}
+
+.tt-mobile-free {
+    background: #fafafa !important;
+    border-left: 4px solid #e0e0e0 !important;
+    box-shadow: none;
+}
+
+.tt-mobile-break-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fafafa;
+    border-radius: 10px;
+    padding: 10px 16px;
+    border: 1px dashed #e0e0e0;
+}
+
+.tt-mobile-break-icon { font-size: 18px; }
+
+.tt-mobile-break-text {
+    font-size: 13px;
+    color: #aaa;
+    font-weight: 500;
+}
+
+.tt-mobile-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.tt-mobile-period-badge {
+    background: #0f5132;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+}
+
+.tt-mobile-time {
+    font-size: 11px;
+    color: #999;
+    font-weight: 500;
+}
+
+.tt-mobile-card-body {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tt-mobile-icon { font-size: 22px; }
+
+.tt-mobile-subject {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a2a;
+    line-height: 1.3;
+}
+
+.tt-mobile-faculty {
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+.tt-mobile-free-label {
+    font-size: 13px;
+    color: #bbb;
+    font-style: italic;
+}
+
+/* ── Legend ── */
+.tt-legend {
+    margin-top: 24px;
+    background: white;
+    border-radius: 16px;
+    padding: 20px 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.tt-legend-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0f5132;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+}
+
+.tt-legend-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tt-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .timetable-page { padding: 16px; }
+
+    .tt-title { font-size: 22px; }
+
+    .tt-header { flex-direction: column; gap: 16px; }
+
+    .tt-header-stats { width: 100%; justify-content: space-between; }
+
+    .tt-stat { flex: 1; padding: 12px 8px; }
+
+    .tt-stat-value { font-size: 18px; }
+
+    .tt-table-wrap { display: none; }
+
+    .tt-day-tabs { display: flex; }
+
+    .tt-mobile-view { display: block; }
+
+    .tt-legend-item { font-size: 11px; }
+}

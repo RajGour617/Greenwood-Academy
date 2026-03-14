@@ -23,7 +23,7 @@ const AdmissionsPage = () => {
             <div className="grid md:grid-cols-3 gap-8 mb-16">
               <div className="text-center">
                 <Reveal>
-                <div className="w-16 h-16 bg-secondary-gold text-primary-green rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                <div className="w-16 h-16 bg-secondary-gold text-primary-green rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold bg-red-400">
                   1
                 </div>
               </Reveal>
@@ -33,7 +33,7 @@ const AdmissionsPage = () => {
 
               <div className="text-center">
                 <Reveal>
-                <div className="w-16 h-16 bg-secondary-gold text-primary-green rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                <div className="w-16 h-16 bg-secondary-gold text-primary-green rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold bg-green-400">
                   2
                 </div>
               </Reveal>
@@ -43,7 +43,7 @@ const AdmissionsPage = () => {
 
               <div className="text-center">
                 <Reveal>
-                <div className="w-16 h-16 bg-secondary-gold text-primary-green rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                <div className="w-16 h-16 bg-secondary-gold text-primary-green rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold bg-blue-400">
                   3
                 </div>
               </Reveal>
@@ -54,7 +54,7 @@ const AdmissionsPage = () => {
 
             {/* CTA Button */}
             <div className="text-center">
-              <button className="bg-secondary-gold text-primary-green px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-400 transition-colors">
+              <button className="bg-secondary-gold text-primary-green px-8 py-4 rounded-lg font-semibold text-lg bg-yellow-400 transition-colors hover:transform hover:scale-105 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-300">
                 Start Application →
               </button>
             </div>
